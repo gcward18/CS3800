@@ -14,6 +14,10 @@ void Shell::run_shell()
             finished = true;
             continue;
         }
+        if(command == "ls")
+        {
+            dir.print_files("home/");
+        }
         else
         {
             cout << "INVALID COMMAND" << endl;

@@ -9,8 +9,8 @@ using namespace std;
 class Directory {
     // Private memeber variables
     vector  <string>                    files;          // a list of files in the current directory
-    map     <string, vector<string>>    directory;      // Current working directory and files in it
-    string                              cwd;             // Current Working Directory
+    map     <string, vector<string>>    dir;      // Current working directory and files in it
+    string                              cwdir;             // Current Working Directory
 
     public:
 
@@ -31,6 +31,8 @@ class Directory {
     {
         files.push_back("..");
         files.push_back(".");
+        dir.insert( pair<string, vector<string>>("home/",files));
+        this->cwdir = "home/";
     }
     Directory(string home);  
 
@@ -40,13 +42,18 @@ class Directory {
 
     /**
      * Purpose: Prints all the files in the directory
+     * 
+     * @params {string} cwd: The current working directory
      */
-    void print_files();
+    void print_files(string cwd);
 
     /**
      * Purpose: Makes a new file in directory
+     * 
+     * @params {string} cwd : The current working directory
+     * @params {string} file: The file to be added
      */
-    void make_file();
+    void make_file(string cwd, string file);
 
     /**
      * Purpose: Makes a new directory
@@ -60,5 +67,4 @@ class Directory {
 
 };
 
-#include "directory.cpp"
 #endif

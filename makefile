@@ -1,4 +1,4 @@
-CFLAGS = -Wall --pedantic-errors -O2
+CFLAGS = -Wall -std=c++11 --pedantic-errors -O2
 
 program: main.o directory.o shell.o
 	g++ ${CFLAGS} directory.o shell.o main.o -o program
@@ -16,5 +16,11 @@ directory.o: directory.h directory.cpp
 shell.o: shell.h shell.cpp
 	g++ ${CFLAGS} -c shell.cpp
 
+test: test.o
+	g++ ${CFLAGS} test.o -o test
+
+test.o: test.cpp
+	g++ ${CFLAGS} -c test.cpp
+
 clean:
-	rm *.o lin_shell
+	rm *.o program test
