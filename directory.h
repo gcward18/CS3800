@@ -2,15 +2,18 @@
 #define DIRECTORY_H
 
 #include <iostream>
+#include "file.h"
+#include "folder.h"
 #include <vector>
 #include <map>
 using namespace std;
 
 class Directory {
     // Private memeber variables
-    vector  <string>                    files;          // a list of files in the current directory
-    map     <string, vector<string>>    dir;      // Current working directory and files in it
-    string                              cwdir;             // Current Working Directory
+    vector  <File>                    files;            // a list of files in the current directory
+    map     <string, vector<File>>    dir_files;        // Current working directory and files in it
+    map     <string, vector<Folder>>  dir_folders;      // Files in the current directory
+    string                            cwdir;             // Current Working Directory
 
     public:
 
