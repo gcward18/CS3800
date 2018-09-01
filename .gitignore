@@ -1,2 +1,3 @@
 *.o
+.vscode
 lin_shell

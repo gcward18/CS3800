@@ -16,8 +16,14 @@ directory.o: directory.h directory.cpp
 shell.o: shell.h shell.cpp
 	g++ ${CFLAGS} -c shell.cpp
 
-test: test.o
-	g++ ${CFLAGS} test.o -o test
+file.o: file.h file.cpp
+	g++ ${CFLAGS} -c file.cpp
+
+folder.o: folder.h folder.cpp
+	g++ ${CFLAGS} -c folder.cpp
+
+test: test.o file.o folder.o
+	g++ ${CFLAGS} test.o file.o folder.o -o test
 
 test.o: test.cpp
 	g++ ${CFLAGS} -c test.cpp

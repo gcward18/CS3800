@@ -48,14 +48,6 @@ class Directory {
     void print_files(string cwd);
 
     /**
-     * Purpose: Makes a new file in directory
-     * 
-     * @params {string} cwd : The current working directory
-     * @params {string} file: The file to be added
-     */
-    void make_file(string cwd, string file);
-
-    /**
      * Purpose: Makes a new directory
      */
     void make_dir();
