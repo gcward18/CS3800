@@ -1,7 +1,9 @@
 #include <iostream>
 #include "stdlib.h"
 #include "string.h"
+#include "file.h"
 #include "folder.h"
+#include "directory.h"
 #include <map>
 #include <vector>
 using namespace std;
@@ -14,13 +16,11 @@ void read_list(string list[] , int num_items = 0)
 
 int main()
 {
-    vector<string>  stuff;
-    string          f_name = "folder";
-    string          permissions[3] = {"w","r","x"};
-    Folder          f1(f_name, permissions);
+    Directory
+    
+    stuff.push_back(Folder(".."));
 
-    f1.print_folder_with_permissions();
-
+    stuff[0].print_folder_with_permissions();
 
     return 0;
 }
