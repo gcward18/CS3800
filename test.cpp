@@ -1,12 +1,13 @@
 #include <iostream>
 // #include <vector>
-#include "file.h"
+#include "directory.h"
 #include "_helper/parse_file_path.h"
 using namespace std;
 
 int main()
 {
-    File f1("a.out"); 
-    f1.print_file_with_permissions();
+    Directory d1; 
+    d1.print_dir_contents_with_permissions();
+    d1.print_dir_contents_without_permissions();
     return 0;
 }

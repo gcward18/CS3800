@@ -8,7 +8,7 @@ void Shell::run_shell()
     while(!this->finished)
     {
         string flag;
-        cout << this->cwd;
+        cout << dir.get_cwd() << "  ";
         
         getline(cin, command);
         istringstream iss(command);
@@ -20,7 +20,7 @@ void Shell::run_shell()
             continue;
         }
         // command to list the files and folders in directory
-        if(command == "ls")
+        else if(command == "ls")
         {
             // user wants to see the permissions
             if( flag == "-l" )
@@ -37,12 +37,24 @@ void Shell::run_shell()
         // change directory
         else if ( command == "cd" )
         {
-            dir.change_dir(flag);
+            if (flag == "~")
+                dir.change_to_home_dir();
+            else
+                dir.change_dir(flag);
         }
-        else if ( command == "mkdir")
+        // make directory
+        else if ( command == "mkdir" )
         {
             dir.make_dir(flag);
         }
+        // make file
+        else if ( command == "touch" )
+        {
+            dir.make_file(flag);
+            
+        }
+
+        // not a valid command
         else
         {
             cout << "INVALID COMMAND" << endl;
