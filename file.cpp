@@ -1,18 +1,26 @@
 #include "file.h"
+#include <iostream>
 
 void File::print_file_without_permissions()
 {
-    cout << this->file_name << endl;
+    // List file name
+    cout << this->file_name << " ";
 }
 
 void File::print_file_with_permissions()
 {
-    for(int i = 0; i < this->file[this->file_name].size(); i++)
-        cout << this->file[this->file_name][i];
-    cout << "  " <<  this->file_name << endl;
+    vector<string> permissions = this->get_permissions();
+
+    // iteratate through and print the files permissions
+    for(int i = 0; i < permissions.size(); i++)
+        cout << permissions[i];
+
+    // print the file name
+    cout << "\t" << this->get_file_date_time().substr(0, this->get_file_date_time().length() -1) << " " <<  this->get_file_name() << endl;
 }
 
 void File::change_permission(string change, int index)
 {
-    this->file[this->file_name][index] = change;
+    // index 1 = read, index 2 = write, index 3 = execute
+    // this->file[this->file_name][index] = change;
 }

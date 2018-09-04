@@ -2,19 +2,17 @@
 #define DIRECTORY_H
 
 #include <iostream>
-#include "file.h"
-#include "folder.h"
 #include <vector>
 #include <map>
+#include <functional>
+#include "file.h"
+#include "folder.h"
 using namespace std;
 
 class Directory {
     // Private memeber variables
-    vector  <File>                    files;            // a list of files in the current directory
-    vector  <Folder>                  folders;          // a list of folders in the current directory
-    map     <string, vector<File>>    dir_files;        // Current working directory and files in it
-    map     <string, vector<Folder>>  dir_folders;      // Files in the current directory
-    string                            cwdir;             // Current Working Directory
+    map     <string,pair<vector<Folder>,vector<File>>>  dir_contents;      // Files in the current directory      // Files in the current directory
+    string                                              cwd;             // Current Working Directory
 
     public:
 
@@ -26,20 +24,22 @@ class Directory {
     /**
      * Getters for Private member variables
      */
-    string get_directory();
+    string          get_directory();
+    vector<Folder>  get_folders()   { return dir_contents[cwd].first;  }
+    vector<File>    get_files()     { return dir_contents[cwd].second; }
+    string          get_cwd()       { return cwd; }
 
     /**
      * Constructor
      */
     Directory()
     {
-        folders.push_back(Folder("."));
-        folders.push_back(Folder(".."));
-        dir_folders.insert( pair<string, vector<Folder>>("home/",folders));
-        this->cwdir = "home/";
+        cwd = "home/";
+        dir_contents[cwd].first.push_back(Folder("."));
+        dir_contents[cwd].first.push_back(Folder(".."));
+        dir_contents[cwd].second.push_back(File("README.txt"));
     }
 
-    Directory(string home);  
 
     /**
      * MEMBER FUNCTIONS
@@ -47,27 +47,28 @@ class Directory {
 
     /**
      * Purpose: Prints all the files in the directory
-     * 
-     * @params {string} cwd: The current working directory
      */
-    void print_files(string cwd);
+    void print_dir_contents_without_permissions();
+    
+    /**
+     * Purpose: Prints all the files in the directory
+     */
+    void print_dir_contents_with_permissions();
 
     /**
-     * Purpose: Prints all the folders in the directory
-     * 
-     * @params {string} cwd: The current working directory
+     * Purpose: Prints all the files in the directory
      */
-    void print_folders(string cwd);
+    void print_dir_path(){ cout << cwd << endl; } 
 
     /**
      * Purpose: Makes a new directory
      */
-    void make_dir();
+    void make_dir(string dir_name);
 
     /**
      * Purpose: Changes directory
      */
-    void change_dir();
+    void change_dir(string dir_name);
 
 };
 

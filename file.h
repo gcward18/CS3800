@@ -5,13 +5,15 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <ctime>
 using namespace std;
 
 class File {
     // Private memeber variables
-    map     <string, vector<string>>    file;       // file, that has specfic contents and permissions
-    string                              file_name;  // name of the file 
-    
+    pair    <vector<string>,string>    file_date_permissions;       // file, that has specfic contents and permissions
+    string                             file_name;  // name of the file 
+    vector  <string>                   permissions;
+
     public:
 
     /**
@@ -22,21 +24,33 @@ class File {
     /**
      * Getters for Private member variables
      */
-    string get_file_with_permissions();
-    string get_file_without_permissions();
-
+    string          get_file_name()         { return file_name; }
+    string          get_file_date_time()    { return file_date_permissions.second; }
+    vector <string> get_permissions()       { return file_date_permissions.first; }
+    /**
+     * Setters
+     */
+    void   set_exectuable(string change)    { file_date_permissions.first[3] = change; }
+    void   set_read(string change)          { file_date_permissions.first[2] = change; }
+    void   set_write(string change)         { file_date_permissions.first[1] = change; }
+    
     /**
      * Constructor
      */
-    File(string f_name, string permissions[])
-    {
-        file_name = f_name;
-        file.insert( pair<string, vector<string>>(f_name,{"r","w","x"}));
-    }
-
     File(string f_name)
     {
+        // Set file name
         file_name = f_name;
+        // set the time at which the file was created
+        time_t now = time(NULL);
+        string dt = ctime(&now);
+        vector<string> permissions;
+        // push generic permissions on the file
+        permissions.push_back("-w");
+        permissions.push_back("-r");
+        permissions.push_back("-x");
+        // create pair with permission and date time
+        file_date_permissions = make_pair(permissions, dt);
     }
 
     /**
@@ -64,6 +78,13 @@ class File {
      * 
      */
     void change_permission(string change, int index);
+
+    /**
+     * Purpose: create a new file
+     * 
+     * @parma {string} file_name:  The title given to a file
+     */
+    void make_file(string file_name);
 
 };
 
