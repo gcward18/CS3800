@@ -26,8 +26,10 @@ void Shell::run_shell()
             if( flag == "-l" )
                 dir.print_dir_contents_with_permissions();
             // user does not want to see permissions
-            else 
+            else if ( flag == "")
                 dir.print_dir_contents_without_permissions();
+            else 
+                cout << "INVALID COMMAND"<< endl;
         }
         // display the current working directory
         else if ( command == "pwd" )
