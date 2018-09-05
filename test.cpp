@@ -1,13 +1,14 @@
 #include <iostream>
 // #include <vector>
+#include "string.h"
+#include <cstddef>
 #include "directory.h"
-#include "_helper/parse_file_path.h"
 using namespace std;
 
 int main()
 {
-    Directory d1; 
-    d1.print_dir_contents_with_permissions();
-    d1.print_dir_contents_without_permissions();
+    string str = "home/folder/folder2";
+    cout <<  str << endl;
+    cout << go_back_one_step(str,"/\\") << endl;
     return 0;
 }

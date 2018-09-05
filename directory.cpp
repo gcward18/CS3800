@@ -1,5 +1,4 @@
 #include "directory.h"
-#include "_helper/parse_file_path.h"
 
 void Directory::print_dir_contents_without_permissions()
 {
@@ -85,6 +84,8 @@ void Directory::make_file(string file_name)
 void Directory::change_dir(string dir_name)
 {
     bool directory_found = false;
+
+
     // Get files and folders from directory
     vector<File>    files = this->get_files();
     vector<Folder>  folders = this->get_folders();
@@ -93,7 +94,7 @@ void Directory::change_dir(string dir_name)
     // the move back and exit function
     if(dir_name == ".." && this->cwd != "home/")
     {   
-        this->cwd = get_file_path(this->cwd) + "/";
+        //this->set_cwd(go_back_one_step(this->cwd,"/\\"));
         return;
     }
     
