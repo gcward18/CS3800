@@ -24,3 +24,22 @@ void Folder::change_permission(string change, int index)
     // index 1 = read, index 2 = write, index 3 = execute
     // this->folder[this->folder_name][index] = change;
 }
+
+void Folder::remove_folder()
+{
+    //set folder name to nothing
+    this->folder_name = "";
+    
+    // assign permissions
+    vector<string> permissions = this->folder_date_permissions.first;
+
+    // erase permissions
+    permissions.erase(permissions.begin(),permissions.end());
+    
+    // set permissions to variable 
+    this->folder_date_permissions.first = permissions;
+
+    // erase date
+    this->folder_date_permissions.second = "";
+
+}

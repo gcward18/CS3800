@@ -1,5 +1,4 @@
 #include "directory.h"
-#include "_helper/parse_file_path.h"
 
 void Directory::print_dir_contents_without_permissions()
 {
@@ -81,36 +80,53 @@ void Directory::make_file(string file_name)
     this->set_files(files);
 }
 
-
-void Directory::change_dir(string dir_name)
+void Directory::map_new_dir(string new_cwd)
 {
-    bool directory_found = false;
+    dir_contents[new_cwd].first.push_back(Folder("."));
+    dir_contents[new_cwd].first.push_back(Folder(".."));
+    dir_contents[new_cwd].second.push_back(File("README.txt"));
+}
+
+
+/**
+ * Puspose: Remove directory
+ */
+void Directory::remove_folder(string f_name)
+{
     // Get files and folders from directory
-    vector<File>    files = this->get_files();
     vector<Folder>  folders = this->get_folders();
 
-    // if the request is just to move back to the previous directory 
-    // the move back and exit function
-    if(dir_name == ".." && this->cwd != "home/")
-    {   
-        this->cwd = get_file_path(this->cwd) + "/";
-        return;
+    // find folder
+    for(int i = 0; i < folders.size(); i++){
+        if ( f_name == folders[i].get_folder_name() )
+        {    
+            folders[i].remove_folder();
+            folders.erase(folders.begin() + i);
+        }
     }
-    
-    // iterate through the contents in the directory and see if the request
-    // directory in linked to the current, if not then break out
-    for(int i = 0; i < folders.size(); i++)
-    {
-        //   current working directory,  folder list                        directory wanted
-        if(folders[i].get_folder_name()     ==  dir_name)
-        {
-            directory_found = true;
+}
+
+void Directory::remove_file(string f_name)
+{
+    vector<File>    files = this->get_files();
+    int pos;
+        // find file
+    for(int i = 0; i < files.size(); i++){
+        if ( f_name == files[i].get_file_name() )
+        { 
+            
+            files[i].remove_file();
+            files.erase(files.begin() + i);
         }
     }
 
-    if(directory_found = true)
-    {
-        string new_dir = this->cwd + dir_name + "/";
-        this->set_cwd(new_dir);
-    }
 }
+
+string Directory::go_back_one_step( const std::string& str)
+{
+  string new_str = str.substr(0, str[str.length()-3]);
+  cout << new_str << endl;
+  std::size_t found = new_str.find_last_of("/\\");
+  return str.substr(0,found);
+}
+

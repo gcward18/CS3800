@@ -86,6 +86,13 @@ class File {
      */
     void make_file(string file_name);
 
+    /**
+     * Purpose: create a new file
+     * 
+     * @parma {string} file_name:  The title given to a file
+     */
+    void remove_file();
+
 };
 
 #endif

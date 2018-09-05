@@ -19,7 +19,7 @@ class Directory {
     /**
      * Setters for the Private member variables
      */
-    void set_directory(string passed_directory, string files);
+    void map_new_dir(string new_cwd);
 
     /**
      * Getters for Private member variables
@@ -95,6 +95,20 @@ class Directory {
         cwd = "home/";
     }
 
+    /**
+     * Puspose: Remove directory
+     */
+    void remove_folder(string f_name);
+    
+    /**
+     * Purpose: Remove file
+     */
+    void remove_file(string f_name);
+
+    /**
+     * Purpose: Goes back to previous directory
+     */
+    string go_back_one_step( const std::string& str);   
 };
 
 #endif

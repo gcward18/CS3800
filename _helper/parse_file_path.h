@@ -17,8 +17,9 @@ string get_file_path (const std::string& str)
 
 string go_back_one_step( const std::string& str)
 {
-  string new_str = str.substr(0, str[-1]);
-  std::size_t found = new_str.find_last_of("/\\");
+  string new_str = str.substr(0, str[str.length()-3]);
+  cout << new_str << endl;
+  std::size_t found = new_str.find_last_of("/");
   return str.substr(0,found);
 }
 

@@ -1,5 +1,6 @@
 #include "shell.h"
 #include <sstream>
+#include "_helper/parse_file_path.h"
 
 void Shell::run_shell()
 {
@@ -39,15 +40,42 @@ void Shell::run_shell()
         // change directory
         else if ( command == "cd" )
         {
+            // automatically go home
             if (flag == "~")
                 dir.change_to_home_dir();
+            // go back directory
+            else if (flag == "..")
+            {
+                // if not in home directory then we can back out
+                if (dir.get_cwd() != "home/")
+                {
+                    // the directory to the previous directory
+                    dir.set_cwd(go_back_one_step(dir.get_cwd()));
+                }
+            }
             else
-                dir.change_dir(flag);
+            {
+                for(int i = 0; i < dir.get_folders().size(); i++)
+                {
+                    if(flag == dir.get_folders()[i].get_folder_name() && (flag != "." && flag != ".." ))
+                    {
+                        string new_dir = dir.get_cwd() + flag + "/";
+                        dir.set_cwd(new_dir);
+                        dir.map_new_dir(new_dir);
+                    }
+                }
+                
+            }
         }
         // make directory
         else if ( command == "mkdir" )
         {
             dir.make_dir(flag);
+        }
+        // remove directory
+        else if ( command == "rmdir" )
+        {
+            dir.remove_folder(flag);
         }
         // make file
         else if ( command == "touch" )

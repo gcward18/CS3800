@@ -86,6 +86,13 @@ class Folder {
      */
     void make_folder(string folder_name);
 
+    /**
+     * Purpose: remove folder
+     * 
+     * @parma {string} folder_name:  The title given to a folder
+     */
+    void remove_folder();
+
 };
 
 #endif
