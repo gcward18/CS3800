@@ -10,5 +10,6 @@ int main()
     string str = "home/folder/folder2";
     cout <<  str << endl;
     cout << go_back_one_step(str,"/\\") << endl;
-    return 0;
+
+ return 0;
 }
