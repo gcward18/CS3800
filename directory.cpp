@@ -104,6 +104,8 @@ void Directory::remove_folder(string f_name)
             folders.erase(folders.begin() + i);
         }
     }
+
+    this->set_folders(folders);
 }
 
 void Directory::remove_file(string f_name)
@@ -120,13 +122,17 @@ void Directory::remove_file(string f_name)
         }
     }
 
+    this->set_files(files);
 }
 
 string Directory::go_back_one_step( const std::string& str)
 {
   string new_str = str.substr(0, str[str.length()-3]);
-  cout << new_str << endl;
-  std::size_t found = new_str.find_last_of("/\\");
+
+  size_t found  = new_str.find_last_of("/");
+  new_str       = new_str.substr(0,found);
+  found         = new_str.find_last_not_of("/");
+
   return str.substr(0,found);
 }
 

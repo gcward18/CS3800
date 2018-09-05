@@ -1,6 +1,6 @@
 #include "shell.h"
 #include <sstream>
-#include "_helper/parse_file_path.h"
+//#include "_helper/parse_file_path.h"
 
 void Shell::run_shell()
 {
@@ -50,7 +50,7 @@ void Shell::run_shell()
                 if (dir.get_cwd() != "home/")
                 {
                     // the directory to the previous directory
-                    dir.set_cwd(go_back_one_step(dir.get_cwd()));
+                    dir.set_cwd(dir.go_back_one_step(dir.get_cwd()));
                 }
             }
             else
@@ -76,6 +76,11 @@ void Shell::run_shell()
         else if ( command == "rmdir" )
         {
             dir.remove_folder(flag);
+        }
+        // remove file
+        else if ( command == "rm" )
+        {
+            dir.remove_file(flag);
         }
         // make file
         else if ( command == "touch" )
