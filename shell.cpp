@@ -43,6 +43,7 @@ void Shell::run_shell()
         {
             dir.make_dir(flag);
         }
+        else if 
         else
         {
             cout << "INVALID COMMAND" << endl;
