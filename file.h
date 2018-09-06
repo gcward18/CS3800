@@ -32,9 +32,10 @@ class File {
     /**
      * Setters
      */
-    void   set_exectuable(string change)    { file_date_permissions.first[3] = change; }
-    void   set_read(string change)          { file_date_permissions.first[2] = change; }
-    void   set_write(string change)         { file_date_permissions.first[1] = change; }
+    void   set_exectuable(string change)    { file_date_permissions.first[3] = change;  }
+    void   set_read(string change)          { file_date_permissions.first[2] = change;  }
+    void   set_write(string change)         { file_date_permissions.first[1] = change;  }
+    void   set_file_timeStamp(string time)  { file_date_permissions.second   = time;      }
     
     /**
      * Constructor

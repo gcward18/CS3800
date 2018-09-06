@@ -70,7 +70,12 @@ void Directory::make_file(string file_name)
         // exit
         if(files[i].get_file_name()     ==  file_name)
         {
-            cout << "FOLDER ALREADY EXISTS" << endl;
+            // get current time
+            time_t now = time(NULL);
+            string dt = ctime(&now);
+
+            // set files time stamp to current datetime
+            files[i].set_file_timeStamp(dt);
             return;
         }
     }

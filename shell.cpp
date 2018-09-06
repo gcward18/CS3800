@@ -56,7 +56,7 @@ void Shell::run_shell()
             }
             else
             {
-                for(int i = 0; i < dir.get_folders().size(); i++)
+                for(unsigned int i = 0; i < dir.get_folders().size(); i++)
                 {
                     if(flag == dir.get_folders()[i].get_folder_name() && (flag != "." && flag != ".." ))
                     {
