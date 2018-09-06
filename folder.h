@@ -13,6 +13,7 @@ class Folder {
     pair    <vector<string>,string>    folder_date_permissions;       // folder, that has specfic contents and permissions
     string                             folder_name;  // name of the folder 
     vector  <string>                   permissions;
+    string                             perm_list[8] = {"---","--x","-r-","-rx","w--","w-x","wr-","wrx"};
 
     public:
 
@@ -24,9 +25,9 @@ class Folder {
     /**
      * Getters for Private member variables
      */
-    string          get_folder_name()         { return folder_name; }
-    string          get_folder_date_time()    { return folder_date_permissions.second; }
-    vector <string> get_permissions()       { return folder_date_permissions.first; }
+    string          get_folder_name()           { return folder_name; }
+    string          get_folder_date_time()      { return folder_date_permissions.second; }
+    vector <string> get_permissions()           { return folder_date_permissions.first; }
     /**
      * Setters
      */
@@ -39,16 +40,20 @@ class Folder {
      */
     Folder(string f_name)
     {
-        // Set folder name
+        // Set file name
         folder_name = f_name;
-        // set the time at which the folder was created
+
+        // set the time at which the file was created
         time_t now = time(NULL);
         string dt = ctime(&now);
         vector<string> permissions;
-        // push generic permissions on the folder
-        permissions.push_back("-w");
-        permissions.push_back("-r");
-        permissions.push_back("-x");
+
+        // push generic permissions on the file
+        permissions.push_back("d");
+        permissions.push_back(perm_list[7]);
+        permissions.push_back(perm_list[7]);
+        permissions.push_back(perm_list[7]);
+
         // create pair with permission and date time
         folder_date_permissions = make_pair(permissions, dt);
     }
@@ -70,14 +75,12 @@ class Folder {
     void print_folder_without_permissions();
 
     /**
-     * Purpose: Modify permissions of a folder
+     * Purpose: Modify permissions of a file
      * 
      * @param {string} change: The new permission value
-     * @param {int}    index : Index of which permission in being changed
-     *                         1: read, 2: write, 3: edit
      * 
      */
-    void change_permission(string change, int index);
+    void change_permission(string change);
 
     /**
      * Purpose: create a new folder

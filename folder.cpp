@@ -12,17 +12,18 @@ void Folder::print_folder_with_permissions()
     vector<string> permissions = this->get_permissions();
 
     // iteratate through and print the folders permissions
-    for(int i = 0; i < permissions.size(); i++)
+    for(unsigned int i = 0; i < permissions.size(); i++)
         cout << permissions[i];
 
     // print the folder name
     cout << "\t" << this->get_folder_date_time().substr(0, this->get_folder_date_time().length() -1) << " " <<  this->get_folder_name() << endl;
 }
 
-void Folder::change_permission(string change, int index)
+void Folder::change_permission(string change)
 {
-    // index 1 = read, index 2 = write, index 3 = execute
-    // this->folder[this->folder_name][index] = change;
+    this->folder_date_permissions.first[1] = this->perm_list[change[0]-48];
+    this->folder_date_permissions.first[2] = this->perm_list[change[1]-48];
+    this->folder_date_permissions.first[3] = this->perm_list[change[2]-48];
 }
 
 void Folder::remove_folder()

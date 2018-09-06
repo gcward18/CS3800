@@ -108,7 +108,12 @@ class Directory {
     /**
      * Purpose: Goes back to previous directory
      */
-    string go_back_one_step( const std::string& str);   
+    string go_back_one_step( const std::string& str); 
+
+    /**
+     * Purpose: Change a file/folders permissions
+     */
+    void change_permissions(string permission, string f_name);  
 };
 
 #endif

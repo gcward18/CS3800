@@ -13,6 +13,7 @@ class File {
     pair    <vector<string>,string>    file_date_permissions;       // file, that has specfic contents and permissions
     string                             file_name;  // name of the file 
     vector  <string>                   permissions;
+    string                             perm_list[8] = {"---","--x","-r-","-rx","w--","w-x","wr-","wrx"};
 
     public:
 
@@ -27,6 +28,7 @@ class File {
     string          get_file_name()         { return file_name; }
     string          get_file_date_time()    { return file_date_permissions.second; }
     vector <string> get_permissions()       { return file_date_permissions.first; }
+
     /**
      * Setters
      */
@@ -46,9 +48,10 @@ class File {
         string dt = ctime(&now);
         vector<string> permissions;
         // push generic permissions on the file
-        permissions.push_back("-w");
-        permissions.push_back("-r");
-        permissions.push_back("-x");
+        permissions.push_back("f");
+        permissions.push_back("wrx");
+        permissions.push_back("wrx");
+        permissions.push_back("wrx");
         // create pair with permission and date time
         file_date_permissions = make_pair(permissions, dt);
     }
@@ -77,7 +80,7 @@ class File {
      *                         1: read, 2: write, 3: edit
      * 
      */
-    void change_permission(string change, int index);
+    void change_permission(string change);
 
     /**
      * Purpose: create a new file

@@ -9,11 +9,12 @@ void Shell::run_shell()
     while(!this->finished)
     {
         string flag;
+        string file;
         cout << dir.get_cwd() << "  ";
         
         getline(cin, command);
         istringstream iss(command);
-        iss >> command >> flag;
+        iss >> command >> flag >> file;
 
         if(command == "quit")
         {
@@ -67,13 +68,17 @@ void Shell::run_shell()
                 
             }
         }
+        else if ( command == "chmod" )
+        {
+            dir.change_permissions(flag, file);
+        }
         // make directory
         else if ( command == "mkdir" )
         {
             dir.make_dir(flag);
         }
         // remove directory
-        else if ( command == "rmdir" )
+        else if ( command == "rmdir" && (flag != "." && flag != ".." ))
         {
             dir.remove_folder(flag);
         }

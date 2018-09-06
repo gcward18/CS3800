@@ -7,11 +7,11 @@ void Directory::print_dir_contents_without_permissions()
     vector<Folder>  folders = this->get_folders();
 
     // loop that prints all the folders in directory
-    for(int i = 0; i < folders.size(); i++)
+    for( unsigned int i = 0; i < folders.size(); i++)
         cout << folders[i].get_folder_name() << " ";
     
     // loop prints all the files in the directory
-    for(int i = 0; i < files.size(); i++)
+    for( unsigned int i = 0; i < files.size(); i++)
         cout << files[i].get_file_name() << " ";
     
     // clear to the next line
@@ -26,11 +26,11 @@ void Directory::print_dir_contents_with_permissions()
     vector<Folder>  folders = this->get_folders();
 
     // loop that prints all the folders in directory
-    for(int i = 0; i < folders.size(); i++)
+    for( unsigned int i = 0; i < folders.size(); i++)
         folders[i].print_folder_with_permissions();
     
     // loop prints all the files in the directory
-    for(int i = 0; i < files.size(); i++)
+    for( unsigned int i = 0; i < files.size(); i++)
         files[i].print_file_with_permissions();
     
     // clear to the next line
@@ -42,7 +42,7 @@ void Directory::make_dir(string dir_name)
 {    
     vector<Folder>  folders = this->get_folders();
     // iterate throug the folders and see if one is already in the directory
-    for(int i = 0; i < folders.size(); i++)
+    for( unsigned int i = 0; i < folders.size(); i++)
     {
         // if already in directory then we just print a statement and 
         // exit
@@ -64,7 +64,7 @@ void Directory::make_file(string file_name)
     vector<File> files = this->get_files();
     
     // iterate throug the folders and see if one is already in the directory
-    for(int i = 0; i < files.size(); i++)
+    for( unsigned int i = 0; i < files.size(); i++)
     {
         // if already in directory then we just print a statement and 
         // exit
@@ -97,7 +97,7 @@ void Directory::remove_folder(string f_name)
     vector<Folder>  folders = this->get_folders();
 
     // find folder
-    for(int i = 0; i < folders.size(); i++){
+    for( unsigned int i = 0; i < folders.size(); i++){
         if ( f_name == folders[i].get_folder_name() )
         {    
             folders[i].remove_folder();
@@ -111,9 +111,9 @@ void Directory::remove_folder(string f_name)
 void Directory::remove_file(string f_name)
 {
     vector<File>    files = this->get_files();
-    int pos;
-        // find file
-    for(int i = 0; i < files.size(); i++){
+    
+    // find file
+    for( unsigned int i = 0; i < files.size(); i++){
         if ( f_name == files[i].get_file_name() )
         { 
             
@@ -127,12 +127,49 @@ void Directory::remove_file(string f_name)
 
 string Directory::go_back_one_step( const std::string& str)
 {
-  string new_str = str.substr(0, str[str.length()-3]);
+    // // create a new string that is a sub string of the first path
+    // string new_str = str.substr(0, str[str.length()-1]);
+    string new_str = str;
+    // find the position of the last "/"
+    size_t found  = new_str.find_last_of("/");
+    // create a new string that a subset of that 
+    // Ex: home/file/ will now be home/file
+    new_str       = new_str.substr(0,found);
 
-  size_t found  = new_str.find_last_of("/");
-  new_str       = new_str.substr(0,found);
-  found         = new_str.find_last_not_of("/");
+    // find the position of the last "/"
+    found  = new_str.find_last_of("/");
 
-  return str.substr(0,found);
+    // find the last "/" in the string
+    // returns 4 from "home/file"
+    //found         = new_str.find_last_not_of("/");
+
+    // return "home/" from "home/file"
+    return str.substr(0,found) + "/";
 }
 
+void Directory::change_permissions(string permission, string f_name)
+{
+    // Get files and folders from directory
+    vector<File>    files = this->get_files();
+    vector<Folder>  folders = this->get_folders();
+
+    // iterate through files to see if it's a files permissions that 
+    // needs to be changed
+    for(unsigned int i = 0; i < files.size(); i++)
+    {
+        if ( f_name == files[i].get_file_name())
+            files[i].change_permission(permission);
+    }
+
+    // iterate through folders to see if it's a folders permissions that 
+    // needs to be changed
+    for(unsigned int i = 0; i < folders.size(); i++)
+    {
+        if (f_name == folders[i].get_folder_name() )
+            folders[i].change_permission(permission);
+    }
+
+    // set the files and folders
+    this->set_files(files);
+    this->set_folders(folders);
+} 
