@@ -44,15 +44,18 @@ class File {
     {
         // Set file name
         file_name = f_name;
+
         // set the time at which the file was created
         time_t now = time(NULL);
         string dt = ctime(&now);
         vector<string> permissions;
+
         // push generic permissions on the file
         permissions.push_back("f");
         permissions.push_back("wrx");
         permissions.push_back("wrx");
         permissions.push_back("wrx");
+        
         // create pair with permission and date time
         file_date_permissions = make_pair(permissions, dt);
     }
@@ -77,8 +80,6 @@ class File {
      * Purpose: Modify permissions of a file
      * 
      * @param {string} change: The new permission value
-     * @param {int}    index : Index of which permission in being changed
-     *                         1: read, 2: write, 3: edit
      * 
      */
     void change_permission(string change);
