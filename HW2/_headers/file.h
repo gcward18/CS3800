@@ -82,14 +82,14 @@ class File {
      * @param {string} change: The new permission value
      * 
      */
-    void change_permission(string change);
+    void change_permission(const string& change);
 
     /**
      * Purpose: create a new file
      * 
      * @parma {string} file_name:  The title given to a file
      */
-    void make_file(string file_name);
+    void make_file(const string& file_name);
 
     /**
      * Purpose: create a new file

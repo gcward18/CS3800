@@ -19,7 +19,7 @@ class Directory {
     /**
      * Setters for the Private member variables
      */
-    void map_new_dir(string new_cwd);
+    void map_new_dir(const string& new_cwd);
 
     /**
      * Getters for Private member variables
@@ -76,17 +76,17 @@ class Directory {
     /**
      * Purpose: Makes a new directory
      */
-    void make_dir(string dir_name);
+    void make_dir(const string& dir_name);
 
     /**
      * Purpose: Makes a new file
      */
-    void make_file(string file_name);
+    void make_file(const string& file_name);
 
     /**
      * Purpose: Changes directory
      */
-    void change_dir(string dir_name);
+    void change_dir(const string& dir_name);
 
     /**
      * Purpose: Changes directory to home directory
@@ -98,12 +98,12 @@ class Directory {
     /**
      * Puspose: Remove directory
      */
-    void remove_folder(string f_name);
+    void remove_folder(const string& f_name);
     
     /**
      * Purpose: Remove file
      */
-    void remove_file(string f_name);
+    void remove_file(const string& f_name);
 
     /**
      * Purpose: Goes back to previous directory
@@ -113,7 +113,7 @@ class Directory {
     /**
      * Purpose: Change a file/folders permissions
      */
-    void change_permissions(string permission, string f_name);  
+    void change_permissions(const string& permission, const string& f_name);  
 };
 
 #endif

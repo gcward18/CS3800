@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "../_headers/shell.h"
 #include <sstream>
 //#include "_helper/parse_file_path.h"
 
@@ -10,6 +10,7 @@ void Shell::run_shell()
     {
         string flag;
         string file;
+        bool   impoper_perm = false;
         cout << dir.get_cwd() << "  ";
         
         getline(cin, command);
@@ -70,7 +71,16 @@ void Shell::run_shell()
         }
         else if ( command == "chmod" )
         {
-            dir.change_permissions(flag, file);
+            impoper_perm = false;
+            for(unsigned int i = 0; i < flag.length(); i++)
+                if(flag[i]-48 > 7 || flag[i] - 48 < 0 )
+                {
+                    impoper_perm = true;
+                }
+            if(!impoper_perm)
+                dir.change_permissions(flag, file);
+            else
+                cout << "INVALID PERMISSIONS" <<endl;
         }
         // make directory
         else if ( command == "mkdir" )

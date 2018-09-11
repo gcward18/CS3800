@@ -87,7 +87,7 @@ class Folder {
      * 
      * @parma {string} folder_name:  The title given to a folder
      */
-    void make_folder(string folder_name);
+    void make_folder(const string& folder_name);
 
     /**
      * Purpose: remove folder

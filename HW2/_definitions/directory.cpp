@@ -1,4 +1,4 @@
-#include "directory.h"
+#include "../_headers/directory.h"
 
 void Directory::print_dir_contents_without_permissions()
 {
@@ -38,7 +38,7 @@ void Directory::print_dir_contents_with_permissions()
 
 }
 
-void Directory::make_dir(string dir_name)
+void Directory::make_dir( const string& dir_name)
 {    
     vector<Folder>  folders = this->get_folders();
     // iterate throug the folders and see if one is already in the directory
@@ -59,7 +59,7 @@ void Directory::make_dir(string dir_name)
 }
 
 
-void Directory::make_file(string file_name)
+void Directory::make_file( const string& file_name)
 {    
     vector<File> files = this->get_files();
     
@@ -85,7 +85,7 @@ void Directory::make_file(string file_name)
     this->set_files(files);
 }
 
-void Directory::map_new_dir(string new_cwd)
+void Directory::map_new_dir( const string& new_cwd)
 {
     dir_contents[new_cwd].first.push_back(Folder("."));
     dir_contents[new_cwd].first.push_back(Folder(".."));
@@ -96,7 +96,7 @@ void Directory::map_new_dir(string new_cwd)
 /**
  * Puspose: Remove directory
  */
-void Directory::remove_folder(string f_name)
+void Directory::remove_folder(const string& f_name)
 {
     // Get files and folders from directory
     vector<Folder>  folders = this->get_folders();
@@ -113,7 +113,7 @@ void Directory::remove_folder(string f_name)
     this->set_folders(folders);
 }
 
-void Directory::remove_file(string f_name)
+void Directory::remove_file( const string& f_name)
 {
     vector<File>    files = this->get_files();
     
@@ -152,7 +152,7 @@ string Directory::go_back_one_step( const std::string& str)
     return str.substr(0,found) + "/";
 }
 
-void Directory::change_permissions(string permission, string f_name)
+void Directory::change_permissions( const string& permission, const string& f_name)
 {
     // Get files and folders from directory
     vector<File>    files = this->get_files();

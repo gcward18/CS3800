@@ -1,6 +1,6 @@
 #include <iostream>
-#include "directory.h"
-#include "shell.h"
+#include "../_headers/directory.h"
+#include "../_headers/shell.h"
 #include "string.h"
 using namespace std;
 

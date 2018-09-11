@@ -1,4 +1,4 @@
-#include "folder.h"
+#include "../_headers/folder.h"
 #include <iostream>
 
 void Folder::print_folder_without_permissions()
@@ -19,7 +19,7 @@ void Folder::print_folder_with_permissions()
     cout << "\t" << this->get_folder_date_time().substr(0, this->get_folder_date_time().length() -1) << " " <<  this->get_folder_name() << endl;
 }
 
-void Folder::change_permission(string change)
+void Folder::change_permission(const string& change)
 {
     this->folder_date_permissions.first[1] = this->perm_list[change[0]-48];
     this->folder_date_permissions.first[2] = this->perm_list[change[1]-48];

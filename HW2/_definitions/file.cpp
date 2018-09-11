@@ -1,4 +1,4 @@
-#include "file.h"
+#include "../_headers/file.h"
 #include <iostream>
 
 void File::print_file_without_permissions()
@@ -19,7 +19,7 @@ void File::print_file_with_permissions()
     cout << "\t" << this->get_file_date_time().substr(0, this->get_file_date_time().length() -1) << " " <<  this->get_file_name() << endl;
 }
 
-void File::change_permission(string change)
+void File::change_permission(const string& change)
 {
     this->file_date_permissions.first[1] = this->perm_list[change[0]-48];
     this->file_date_permissions.first[2] = this->perm_list[change[1]-48];
