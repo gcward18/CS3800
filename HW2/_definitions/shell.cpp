@@ -8,6 +8,7 @@ void Shell::run_shell()
     // shell excecution continue
     while(!this->finished)
     {
+        bool found_file = false;
         string flag;
         string file;
         bool   impoper_perm = false;
@@ -100,7 +101,24 @@ void Shell::run_shell()
         // make file
         else if ( command == "touch" )
         {
-            dir.make_file(flag);
+            found_file = false;
+
+            for(int i = 0; i < this->dir.get_files().size(); i++)
+                if( this->dir.get_files()[i].get_file_name() == flag)
+                {    
+                    found_file = true;
+                }
+            if (!found_file)
+                for(int i = 0; i < this->dir.get_folders().size(); i++)
+                    if( this->dir.get_folders()[i].get_folder_name() == flag)
+                    {    
+                        found_file = true;
+                    }
+            
+
+            this->dir.update_datetime(flag);
+
+            this->dir.make_file(flag);
             
         }
 

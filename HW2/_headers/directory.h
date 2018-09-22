@@ -114,6 +114,11 @@ class Directory {
      * Purpose: Change a file/folders permissions
      */
     void change_permissions(const string& permission, const string& f_name);  
+
+    /**
+     * Purpose: Update file date time
+     */
+    void update_datetime(const string& fname);
 };
 
 #endif

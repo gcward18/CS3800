@@ -31,9 +31,10 @@ class Folder {
     /**
      * Setters
      */
-    void   set_exectuable(string change)    { folder_date_permissions.first[3] = change; }
-    void   set_read(string change)          { folder_date_permissions.first[2] = change; }
-    void   set_write(string change)         { folder_date_permissions.first[1] = change; }
+    void   set_exectuable(string change)        { folder_date_permissions.first[3] = change; }
+    void   set_read(string change)              { folder_date_permissions.first[2] = change; }
+    void   set_write(string change)             { folder_date_permissions.first[1] = change; }
+    void   set_folder_timeStamp(string time)    { folder_date_permissions.second   = time;   }
     
     /**
      * Constructor
@@ -80,7 +81,7 @@ class Folder {
      * @param {string} change: The new permission value
      * 
      */
-    void change_permission(string change);
+    void change_permission(const string& change);
 
     /**
      * Purpose: create a new folder
@@ -95,6 +96,11 @@ class Folder {
      * @parma {string} folder_name:  The title given to a folder
      */
     void remove_folder();
+
+    /**
+     * Purpose: update time stamp
+     */
+    void set_time();
 
 };
 

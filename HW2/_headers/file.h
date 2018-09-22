@@ -35,7 +35,7 @@ class File {
     void   set_exectuable(string change)    { file_date_permissions.first[3] = change;  }
     void   set_read(string change)          { file_date_permissions.first[2] = change;  }
     void   set_write(string change)         { file_date_permissions.first[1] = change;  }
-    void   set_file_timeStamp(string time)  { file_date_permissions.second   = time;      }
+    void   set_file_timeStamp(string time)  { file_date_permissions.second   = time;    }
     
     /**
      * Constructor
@@ -59,7 +59,9 @@ class File {
         // create pair with permission and date time
         file_date_permissions = make_pair(permissions, dt);
     }
-
+    /**
+     * Purpose: update time stamp
+     */
     /**
      * MEMBER FUNCTIONS
      */
@@ -98,6 +100,10 @@ class File {
      */
     void remove_file();
 
+    /**
+     * Purpose: update time stamp
+     */
+    void set_time();
 };
 
 #endif

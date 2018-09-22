@@ -178,3 +178,25 @@ void Directory::change_permissions( const string& permission, const string& f_na
     this->set_files(files);
     this->set_folders(folders);
 } 
+
+void Directory::update_datetime(const string& fname)
+{
+
+    // check if file needs to update date time
+    for(unsigned int i = 0; i < this->get_files().size(); i++)
+    {
+        if( this->get_files()[i].get_file_name() == fname)
+        {
+            this->dir_contents[this->get_cwd()].second[i].set_time();
+        }
+    }
+
+    // check to see if folder need to update date time
+    for(unsigned int i = 0; i < this->get_folders().size(); i++)
+    {
+        if( this->get_folders()[i].get_folder_name() == fname)
+        {
+            this->dir_contents[this->get_cwd()].first[i].set_time();
+        }
+    }
+}

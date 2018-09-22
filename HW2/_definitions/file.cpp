@@ -45,3 +45,11 @@ void File::remove_file()
     this->file_date_permissions.second = "";
 
 }
+
+void File::set_time()
+{
+    time_t now = time(NULL);
+    string dt = ctime(&now);
+
+    this->set_file_timeStamp(dt);
+}

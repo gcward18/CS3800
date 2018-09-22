@@ -44,3 +44,13 @@ void Folder::remove_folder()
     this->folder_date_permissions.second = "";
 
 }
+
+void Folder::set_time()
+{
+    time_t now = time(NULL);
+    string dt = ctime(&now);
+
+    this->set_folder_timeStamp(dt);
+}
+
+
